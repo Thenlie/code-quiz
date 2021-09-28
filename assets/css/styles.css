@@ -1,0 +1,19 @@
+/* utility styles */
+* {
+    box-sizing: border-box;
+}
+
+/* header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+/* main styles */
+.page-content {
+    width: 80%;
+    text-align: center;
+    margin-top: 50px;
+    margin: 50px auto;
+}
