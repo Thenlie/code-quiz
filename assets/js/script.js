@@ -7,6 +7,14 @@ var pageContentEl = document.querySelector('.page-content');
 var questionCount = 0; //counts how many questions have been asked
 var questionNum = {}; //empty object to pass questions through
 
+//set var for whether or not user got answer right
+var correctAns = document.createElement('div'); 
+correctAns.className = 'user-answer'
+correctAns.textContent = 'CORRECT!'
+var incorrectAns = document.createElement('div'); 
+incorrectAns.className = 'user-answer'
+incorrectAns.textContent = 'WRONG!'
+
 //var btnPressed = '';
 
 //create question objects
@@ -60,7 +68,7 @@ var startGame = function() {
 }
 
 var createQuestion = function() { //generates a question from the list
-    questionCount++;
+    questionCount++; 
     if (questionCount === 1) {
         questionNum = questionOne;
     } else if (questionCount === 2) {
@@ -73,48 +81,41 @@ var createQuestion = function() { //generates a question from the list
         questionNum = questionFive;
     }
 
-    // var questionHead = document.createElement('h1'); //create h1 element
-    // questionHead.className = 'question-head';
     questionHead.textContent = questionNum.question;
-    pageContentEl.appendChild(questionHead); //add h1 to page
+    pageContentEl.appendChild(questionHead); //add h1 to page (question)
 
-    // var questionOl = document.createElement('ol'); //create ordered list element
-    // questionOl.className = 'question-list'
-    pageContentEl.appendChild(questionOl); //add ol to page
+    pageContentEl.appendChild(questionOl); //add ol to page (container)
 
-    // var questionBtnOne = document.createElement('button'); //create button element
-    // questionBtnOne.className = 'question-button-one'
     questionBtnOne.textContent = questionNum.answerOne;
-    questionOl.appendChild(questionBtnOne); //add li to ol
+    questionOl.appendChild(questionBtnOne); //add button to ol (option 1)
 
-    // var questionBtnTwo = document.createElement('button'); //create button element
-    // questionBtnTwo.className = 'question-button-two'
     questionBtnTwo.textContent = questionNum.answerTwo;
-    questionOl.appendChild(questionBtnTwo); //add li to ol
+    questionOl.appendChild(questionBtnTwo); //add button to ol (option 2)
 
-    // var questionBtnThree = document.createElement('button'); //create button element
-    // questionBtnThree.className = 'question-button-three'
     questionBtnThree.textContent = questionNum.answerThree;
-    questionOl.appendChild(questionBtnThree); //add li to ol
+    questionOl.appendChild(questionBtnThree); //add button to ol (option 3)
 
-    // var questionBtnFour = document.createElement('button'); //create button element
-    // questionBtnFour.className = 'question-button-four'
-    questionBtnFour.textContent = questionNum.answerFour;
-    questionOl.appendChild(questionBtnFour); //add li to ol
+    questionBtnFour.textContent = questionNum.answerFour; 
+    questionOl.appendChild(questionBtnFour); //add button to ol (option 4)
 
     var questionBtnEl = document.querySelector('.question-list');
     questionBtnEl.addEventListener('click', newQuestion); //listens for click on the question buttons
 }
 
 var newQuestion = function(event) {
+    correctAns.remove();
+    incorrectAns.remove();
+    
     var btnPressed = event.target; //define btnPressed as whichever button was clicked
-    if (btnPressed.className == questionNum.solution) { //check if the button is the same as the solution
-        alert('Nice');
+    if (btnPressed.className == questionNum.solution) { //check if the button is the same as the solution   
+        createQuestion();
+        pageContentEl.appendChild(correctAns);
     } else {
-        alert('Not Nice');
+        createQuestion();
+        pageContentEl.appendChild(incorrectAns);
     }
     
-    createQuestion();
+    
 }
 
 function stopGame() {     //once the timer hits zero, run this function
