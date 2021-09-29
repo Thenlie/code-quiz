@@ -17,3 +17,8 @@
     margin-top: 50px;
     margin: 50px auto;
 }
+
+.user-score {
+    display: block;
+    margin: auto;
+}
