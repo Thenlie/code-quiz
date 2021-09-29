@@ -1,3 +1,4 @@
+//variable definitions
 var startBtnEl = document.querySelector('#startBtn'); //sets var for start button
 var mainHead = document.querySelector('#main-head'); //sets var for main h1 element
 var mainP = document.querySelector('#main-p'); //sets var for main paragraph element
@@ -17,8 +18,6 @@ correctAns.textContent = 'CORRECT!'
 var incorrectAns = document.createElement('div'); 
 incorrectAns.className = 'user-answer'
 incorrectAns.textContent = 'WRONG!'
-
-
 
 //create question objects
 var questionOne = {question: 'Commonly used data types do NOT include:', answerOne: 'Strings', answerTwo: 'Booleans', answerThree: 'Alerts', answerFour: 'Numbers', solution: 'question-btn-three'};
@@ -51,7 +50,7 @@ var startGame = function() {
     mainP.remove(); //removes initial main paragraph
     startBtnEl.remove(); //removes start button
 
-    var timeInt = setInterval(function() {
+    timeInt = setInterval(function() { //declare global variable for timer
         if (timeLeft > 0) {
             timerEl.textContent = 'Time: ' + timeLeft; //write timeLeft to the timer element
             timeLeft--; //decrement timer every interval
@@ -77,6 +76,9 @@ var createQuestion = function() { //generates a question from the list
         questionNum = questionFour;
     } else if (questionCount === 5) {
         questionNum = questionFive;
+    } else {
+        stopGame();
+        return;
     }
 
     questionHead.textContent = questionNum.question;
@@ -105,19 +107,29 @@ var newQuestion = function(event) {
     incorrectAns.remove();
     
     var btnPressed = event.target; //define btnPressed as whichever button was clicked
-    if (btnPressed.className == questionNum.solution) { //check if the button is the same as the solution   
+    if (btnPressed.className === questionNum.solution && questionCount < 5) { //check if the button is the same as the solution   
         createQuestion();
         pageContentEl.appendChild(correctAns);
-    } else {
+    } else if (btnPressed.className != questionNum.solution && questionCount < 5) {
         timeLeft -= 10;
         createQuestion();
         pageContentEl.appendChild(incorrectAns);
+    } else if (btnPressed.className === questionNum.solution) {
+        stopGame();
+        return;
+    } else {
+        timeLeft -= 10;
+        stopGame();
+        return;
     }
 }
 
-function stopGame() {     //once the timer hits zero, run this function
-    console.log('The game has ended!');
+function stopGame() {     //once the timer hits zero or all questions have been answered, run this function
+    questionHead.remove();
+    questionOl.remove();
+    clearInterval(timeInt); //stop time
+    timerEl.textContent = 'Time: ' + timeLeft;
+    console.log('The game has ended! You score is: ' + timeLeft);
 }
 
 startBtnEl.addEventListener('click', startGame); //listens for click on start button, then calls function
-
