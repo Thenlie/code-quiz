@@ -7,6 +7,9 @@ var pageContentEl = document.querySelector('.page-content');
 var questionCount = 0; //counts how many questions have been asked
 var questionNum = {}; //empty object to pass questions through
 
+var timeLeft = 0; //set timer to 75
+timerEl.textContent = 'Time: ' + timeLeft;
+
 //set var for whether or not user got answer right
 var correctAns = document.createElement('div'); 
 correctAns.className = 'user-answer'
@@ -15,7 +18,7 @@ var incorrectAns = document.createElement('div');
 incorrectAns.className = 'user-answer'
 incorrectAns.textContent = 'WRONG!'
 
-//var btnPressed = '';
+
 
 //create question objects
 var questionOne = {question: 'Commonly used data types do NOT include:', answerOne: 'Strings', answerTwo: 'Booleans', answerThree: 'Alerts', answerFour: 'Numbers', solution: 'question-btn-three'};
@@ -43,17 +46,10 @@ var questionBtnFour = document.createElement('button'); //create button element
 questionBtnFour.className = 'question-btn-four'
 
 var startGame = function() {
-    console.log('hit'); //for testing only
-    var timeLeft = 75; //set timer to 75
-    timerEl.textContent = 'Time: ' + timeLeft;
-
+    timeLeft = 75; //set timer to initial value
     mainHead.remove(); //removes initial main heading
     mainP.remove(); //removes initial main paragraph
     startBtnEl.remove(); //removes start button
-
-
-
-    createQuestion();
 
     var timeInt = setInterval(function() {
         if (timeLeft > 0) {
@@ -65,6 +61,8 @@ var startGame = function() {
             stopGame(); 
         }
     }, 1000);
+    
+    createQuestion();
 }
 
 var createQuestion = function() { //generates a question from the list
@@ -111,16 +109,14 @@ var newQuestion = function(event) {
         createQuestion();
         pageContentEl.appendChild(correctAns);
     } else {
+        timeLeft -= 10;
         createQuestion();
         pageContentEl.appendChild(incorrectAns);
     }
-    
-    
 }
 
 function stopGame() {     //once the timer hits zero, run this function
     console.log('The game has ended!');
-    
 }
 
 startBtnEl.addEventListener('click', startGame); //listens for click on start button, then calls function
