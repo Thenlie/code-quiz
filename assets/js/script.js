@@ -59,6 +59,14 @@ scoreBtn.type = 'submit'
 scoreBtn.textContent = 'Submit Highscore'
 scoreForm.appendChild(scoreBtn);
 
+var goBackBtn = document.createElement('button'); //create Go Back button
+goBackBtn.className = ('go-back')
+goBackBtn.textContent = 'Go Back'
+
+var clearScoreBtn = document.createElement('button'); //create clear highscore button
+clearScoreBtn.className = 'clear-score'
+clearScoreBtn.textContent = 'Clear Highscores'
+
 var startGame = function () {
     timeLeft = 75; //set timer to initial value
     mainHead.remove(); //removes initial main heading
@@ -165,6 +173,7 @@ function stopGame() { //once the timer hits zero or all questions have been answ
 }
 
 var highScore = function() {
+    //debugger;
     questionHead.textContent = 'High Scores'
     questionDiv.textContent = ''
     var highScoreList = [];
@@ -173,12 +182,25 @@ var highScore = function() {
         highScoreList.sort().reverse(); //sort highscores with highest on top
     }
     for (let i = 0; i < highScoreList.length; i++) { //loop to add highscores to screen
-        highScoreListItem = document.createElement('li') //turn highscore into list item
+        var highScoreListItem = document.createElement('li') //turn highscore into list item
         highScoreListItem.textContent = highScoreList[i]; //add content to list item
         questionDiv.append(highScoreListItem); //add list items to ol
     }
     
-    console.log(highScoreList);
+    questionDiv.appendChild(goBackBtn);
+    questionDiv.appendChild(clearScoreBtn);
+    
+    goBackBtn.addEventListener('click', goBack); 
+    clearScoreBtn.addEventListener('click', clearScore);
+}
+
+var goBack = function() {
+    //window.location.reload();
+    console.log('hit');
+}
+
+var clearScore = function() {
+    console.log('hit2');
 }
 
 startBtnEl.addEventListener('click', startGame); //listens for click on start button, then calls function
