@@ -160,9 +160,25 @@ function stopGame() { //once the timer hits zero or all questions have been answ
     document.addEventListener('submit', function(event) {
         event.preventDefault();
         localStorage.setItem(userScore.value, timeLeft);
-        highScore
+        highScore();
     });
+}
+
+var highScore = function() {
+    questionHead.textContent = 'High Scores'
+    questionDiv.textContent = ''
+    var highScoreList = [];
+    for (let i = 0; i < localStorage.length; i++) { //loop through high scores
+        highScoreList.push(localStorage.getItem(localStorage.key(i)) + ' - ' + localStorage.key(i)); //get highscore key and value
+        highScoreList.sort().reverse(); //sort highscores with highest on top
+    }
+    for (let i = 0; i < highScoreList.length; i++) { //loop to add highscores to screen
+        highScoreListItem = document.createElement('li') //turn highscore into list item
+        highScoreListItem.textContent = highScoreList[i]; //add content to list item
+        questionDiv.append(highScoreListItem); //add list items to ol
+    }
     
+    console.log(highScoreList);
 }
 
 startBtnEl.addEventListener('click', startGame); //listens for click on start button, then calls function
