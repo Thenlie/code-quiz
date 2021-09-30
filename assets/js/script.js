@@ -1,4 +1,4 @@
-//variable definitions
+//global variable definitions
 var startBtnEl = document.querySelector('#startBtn'); //sets var for start button
 var mainHead = document.querySelector('#main-head'); //sets var for main h1 element
 var mainP = document.querySelector('#main-p'); //sets var for main paragraph element
@@ -45,10 +45,19 @@ var questionBtnFour = document.createElement('button'); //create button element
 questionBtnFour.className = 'question-btn-four'
 
 //create highscore input element
+var scoreForm = document.createElement('form');
+//scoreForm.onsubmit = console.log('hit');
+
 var userScore = document.createElement('input');
 userScore.className = 'user-score';
 userScore.type = 'text';
 userScore.placeholder = 'Enter initials';
+scoreForm.appendChild(userScore);
+
+var scoreBtn = document.createElement('button');
+scoreBtn.type = 'submit'
+scoreBtn.textContent = 'Submit Highscore'
+scoreForm.appendChild(scoreBtn);
 
 var startGame = function () {
     timeLeft = 75; //set timer to initial value
@@ -101,8 +110,18 @@ var createQuestion = function () { //generates a question from the list
     questionBtnFour.textContent = questionNum.answerFour;
     questionDiv.appendChild(questionBtnFour); //add button to ol (option 4)
 
-    var questionBtnEl = document.querySelector('.question-list');
-    questionBtnEl.addEventListener('click', newQuestion); //listens for click on the question buttons
+    // var questionBtnEl = document.querySelector('.question-list');
+    // questionBtnEl.addEventListener('click', newQuestion); //listens for click on the question buttons
+
+    // listen for click on buttons
+    var questionOneBtnEl = document.querySelector('.question-btn-one');
+    questionOneBtnEl.addEventListener('click', newQuestion); 
+    var questionTwoBtnEl = document.querySelector('.question-btn-two');
+    questionTwoBtnEl.addEventListener('click', newQuestion); 
+    var questionThreeBtnEl = document.querySelector('.question-btn-three');
+    questionThreeBtnEl.addEventListener('click', newQuestion); 
+    var questionFourBtnEl = document.querySelector('.question-btn-four');
+    questionFourBtnEl.addEventListener('click', newQuestion); 
 }
 
 var newQuestion = function (event) {
@@ -137,7 +156,13 @@ function stopGame() { //once the timer hits zero or all questions have been answ
     }
     questionHead.textContent = 'All Done!';
     questionDiv.textContent = 'Your final score is ' + timeLeft;
-    questionDiv.appendChild(userScore);
+    questionDiv.appendChild(scoreForm);
+    document.addEventListener('submit', function(event) {
+        event.preventDefault();
+        localStorage.setItem(userScore.value, timeLeft);
+        highScore
+    });
+    
 }
 
 startBtnEl.addEventListener('click', startGame); //listens for click on start button, then calls function
