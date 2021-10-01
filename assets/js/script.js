@@ -4,6 +4,7 @@ var mainHead = document.querySelector('#main-head'); //sets var for main h1 elem
 var mainP = document.querySelector('#main-p'); //sets var for main paragraph element
 var timerEl = document.querySelector('#timer'); //set var for timer element
 var pageContentEl = document.querySelector('.page-content');
+var highscoreBtnEl = document.querySelector('.view-high-score');
 
 var questionCount = 0; //counts how many questions have been asked
 var questionNum = {}; //empty object to pass questions through
@@ -173,7 +174,14 @@ function stopGame() { //once the timer hits zero or all questions have been answ
 }
 
 var highScore = function() {
-    //debugger;
+    mainHead.remove(); //removes initial main heading
+    mainP.remove(); //removes initial main paragraph
+    startBtnEl.remove(); //removes start button
+
+    pageContentEl.appendChild(questionHead);
+    pageContentEl.appendChild(questionDiv);
+    
+    console.log('hit');
     questionHead.textContent = 'High Scores'
     questionDiv.textContent = ''
     var highScoreList = [];
@@ -195,12 +203,14 @@ var highScore = function() {
 }
 
 var goBack = function() {
-    //window.location.reload();
-    console.log('hit');
+    window.location.reload();
 }
 
 var clearScore = function() {
-    console.log('hit2');
+    localStorage.clear();
+    alert('The high scores have been cleared');
+    window.location.reload();
 }
 
 startBtnEl.addEventListener('click', startGame); //listens for click on start button, then calls function
+highscoreBtnEl.addEventListener('click', highScore);
