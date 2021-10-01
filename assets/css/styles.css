@@ -32,11 +32,21 @@ ol {
     margin: 5px 10px;
 }
 
+#startBtn:hover, .submit-btn:hover, .go-back:hover, .clear-score:hover, #question-btns:hover {
+    background-color: rgb(191, 128, 255);
+}
+
 .view-high-score {
     background-color: transparent;
     color: rgb(77, 0, 153);
-    border: none;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 5px;
     font-size: 16px;
+}
+
+.view-high-score:hover {
+    background-color: lightgray;
 }
 
 #main-p {
