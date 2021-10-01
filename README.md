@@ -2,8 +2,8 @@
 
 ## Links
 
-* Live webpage available [here.](insert link here)
-* GitHub Repo available [here.](insert link here)
+* Live webpage available [here.](https://thenlie.github.io/code-quiz/)
+* GitHub Repo available [here.](https://github.com/Thenlie/code-quiz)
 
 ## Description
 
@@ -11,4 +11,4 @@ This is a web application that allows the user to play a multiple choice coding 
 
 ## Screenshot of the Application
 
-![Screen shot of the coding quiz](insert link here)
+![Screen shot of the coding quiz](https://github.com/Thenlie/code-quiz/blob/main/assets/images/screenshot.PNG)
