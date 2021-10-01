@@ -1,6 +1,11 @@
 /* utility styles */
 * {
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ol {
+    padding: 0;
 }
 
 /* header styles */
@@ -18,7 +23,65 @@
     margin: 50px auto;
 }
 
+#startBtn, .submit-btn, .go-back, .clear-score {
+    background-color: rgb(77, 0, 153);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    margin: 5px 10px;
+}
+
+.view-high-score {
+    background-color: transparent;
+    color: rgb(77, 0, 153);
+    border: none;
+    font-size: 16px;
+}
+
+#main-p {
+    font-size: 18px;
+}
+
+.question-list {
+    width: 50%;
+    margin: 10px auto;
+    list-style-type: decimal;
+    font-size: 18px;
+    list-style-position: inside;
+}
+
+#question-btns {
+    display: block;
+    background-color: rgb(77, 0, 153);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    margin: 10px auto;
+    width: 50%;
+}
+
+.user-answer {
+    color: grey;
+    border-top: 2px solid lightgrey;
+    font-size: 18px;
+    font-style: italic;
+    padding: 10px 15px;
+    margin: 10px auto;
+}
+
 .user-score {
     display: block;
-    margin: auto;
+    margin: 10px auto;
+    width: 50%;
+    padding: 5px;
+}
+
+.score-list, .score-list::marker {
+    text-align: left;
+    background-color: lightgray;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 10px;
 }

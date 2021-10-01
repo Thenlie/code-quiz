@@ -38,32 +38,40 @@ var questionDiv = document.createElement('ol'); //create ordered list element
 questionDiv.className = 'question-list'
 var questionBtnOne = document.createElement('button'); //create button element
 questionBtnOne.className = 'question-btn-one'
+questionBtnOne.id = 'question-btns'
 var questionBtnTwo = document.createElement('button'); //create button element
 questionBtnTwo.className = 'question-btn-two'
+questionBtnTwo.id = 'question-btns'
 var questionBtnThree = document.createElement('button'); //create button element
 questionBtnThree.className = 'question-btn-three'
+questionBtnThree.id = 'question-btns'
 var questionBtnFour = document.createElement('button'); //create button element
 questionBtnFour.className = 'question-btn-four'
+questionBtnFour.id = 'question-btns'
 
 //create highscore input element
 var scoreForm = document.createElement('form');
-//scoreForm.onsubmit = console.log('hit');
 
+//create highscore initial input
 var userScore = document.createElement('input');
 userScore.className = 'user-score';
 userScore.type = 'text';
 userScore.placeholder = 'Enter initials';
 scoreForm.appendChild(userScore);
 
+//create highscore submit button
 var scoreBtn = document.createElement('button');
+scoreBtn.className = 'submit-btn'
 scoreBtn.type = 'submit'
 scoreBtn.textContent = 'Submit Highscore'
 scoreForm.appendChild(scoreBtn);
 
+//create go back/restart quiz button
 var goBackBtn = document.createElement('button'); //create Go Back button
 goBackBtn.className = ('go-back')
 goBackBtn.textContent = 'Go Back'
 
+//create clear highscores button
 var clearScoreBtn = document.createElement('button'); //create clear highscore button
 clearScoreBtn.className = 'clear-score'
 clearScoreBtn.textContent = 'Clear Highscores'
@@ -147,10 +155,12 @@ var newQuestion = function (event) {
         pageContentEl.appendChild(incorrectAns);
     } else if (btnPressed.className === questionNum.solution) { //check if it is the last question
         stopGame();
+        pageContentEl.appendChild(correctAns);
         return;
     } else {
         timeLeft -= 10;
         stopGame();
+        pageContentEl.appendChild(incorrectAns);
         return;
     }
 }
@@ -177,11 +187,12 @@ var highScore = function() {
     mainHead.remove(); //removes initial main heading
     mainP.remove(); //removes initial main paragraph
     startBtnEl.remove(); //removes start button
+    correctAns.remove();
+    incorrectAns.remove();
 
     pageContentEl.appendChild(questionHead);
     pageContentEl.appendChild(questionDiv);
-    
-    console.log('hit');
+
     questionHead.textContent = 'High Scores'
     questionDiv.textContent = ''
     var highScoreList = [];
@@ -191,12 +202,15 @@ var highScore = function() {
     }
     for (let i = 0; i < highScoreList.length; i++) { //loop to add highscores to screen
         var highScoreListItem = document.createElement('li') //turn highscore into list item
+        highScoreListItem.className = 'score-list'
         highScoreListItem.textContent = highScoreList[i]; //add content to list item
         questionDiv.append(highScoreListItem); //add list items to ol
     }
     
-    questionDiv.appendChild(goBackBtn);
-    questionDiv.appendChild(clearScoreBtn);
+    // questionDiv.appendChild(goBackBtn);
+    // questionDiv.appendChild(clearScoreBtn);
+    pageContentEl.appendChild(goBackBtn);
+    pageContentEl.appendChild(clearScoreBtn);
     
     goBackBtn.addEventListener('click', goBack); 
     clearScoreBtn.addEventListener('click', clearScore);
