@@ -1,4 +1,5 @@
 //global variable definitions
+var headerEl = document.querySelector('.header'); //sets var for header
 var startBtnEl = document.querySelector('#startBtn'); //sets var for start button
 var mainHead = document.querySelector('#main-head'); //sets var for main h1 element
 var mainP = document.querySelector('#main-p'); //sets var for main paragraph element
@@ -184,6 +185,8 @@ function stopGame() { //once the timer hits zero or all questions have been answ
 }
 
 var highScore = function() {
+    clearInterval(timeInt);
+    headerEl.remove();//removes top header
     mainHead.remove(); //removes initial main heading
     mainP.remove(); //removes initial main paragraph
     startBtnEl.remove(); //removes start button
