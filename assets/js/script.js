@@ -77,36 +77,37 @@ var clearScoreBtn = document.createElement('button'); //create clear highscore b
 clearScoreBtn.className = 'clear-score'
 clearScoreBtn.textContent = 'Clear Highscores'
 
-var timeInt = setInterval(startTimer, 1000); //declare global variable for timer
+// var timeInt = setInterval(startTimer, 1000); //declare global variable for timer
    
-function startTimer() {
-    if (timeLeft > 0) {
-        timerEl.textContent = 'Time: ' + timeLeft; //write timeLeft to the timer element
-        timeLeft--; //decrement timer every interval
-    } else {
-        timerEl.textContent = ''; //remove timer from screen
-        clearInterval(timeInt); //clear timer
-        stopGame();
-    }
-}
+// function startTimer() {
+//     if (timeLeft > 0) {
+//         timerEl.textContent = 'Time: ' + timeLeft; //write timeLeft to the timer element
+//         timeLeft--; //decrement timer every interval
+//     } else {
+//         timerEl.textContent = ''; //remove timer from screen
+//         clearInterval(timeInt); //clear timer
+//         stopGame();
+//     }
+// }
 
 var startGame = function () {
+    //debugger;
     timeLeft = 75; //set timer to initial value
     mainHead.remove(); //removes initial main heading
     mainP.remove(); //removes initial main paragraph
     startBtnEl.remove(); //removes start button
 
-    // timeInt = setInterval(function () { //declare global variable for timer
-    //     if (timeLeft > 0) {
-    //         timerEl.textContent = 'Time: ' + timeLeft; //write timeLeft to the timer element
-    //         timeLeft--; //decrement timer every interval
-    //     } else {
-    //         timerEl.textContent = ''; //remove timer from screen
-    //         clearInterval(timeInt); //clear timer
-    //         stopGame();
-    //     }
-    // }, 1000);
-    startTimer();
+    timeInt = setInterval(function () { //declare global variable for timer
+        if (timeLeft > 0) {
+            timerEl.textContent = 'Time: ' + timeLeft; //write timeLeft to the timer element
+            timeLeft--; //decrement timer every interval
+        } else {
+            timerEl.textContent = ''; //remove timer from screen
+            clearInterval(timeInt); //clear timer
+            stopGame();
+        }
+    }, 1000);
+    //startTimer();
     createQuestion();
 }
 
