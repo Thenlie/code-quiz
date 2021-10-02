@@ -77,21 +77,7 @@ var clearScoreBtn = document.createElement('button'); //create clear highscore b
 clearScoreBtn.className = 'clear-score'
 clearScoreBtn.textContent = 'Clear Highscores'
 
-// var timeInt = setInterval(startTimer, 1000); //declare global variable for timer
-   
-// function startTimer() {
-//     if (timeLeft > 0) {
-//         timerEl.textContent = 'Time: ' + timeLeft; //write timeLeft to the timer element
-//         timeLeft--; //decrement timer every interval
-//     } else {
-//         timerEl.textContent = ''; //remove timer from screen
-//         clearInterval(timeInt); //clear timer
-//         stopGame();
-//     }
-// }
-
 var startGame = function () {
-    //debugger;
     timeLeft = 75; //set timer to initial value
     mainHead.remove(); //removes initial main heading
     mainP.remove(); //removes initial main paragraph
@@ -107,7 +93,7 @@ var startGame = function () {
             stopGame();
         }
     }, 1000);
-    //startTimer();
+
     createQuestion();
 }
 
@@ -142,9 +128,6 @@ var createQuestion = function () { //generates a question from the list
 
     questionBtnFour.textContent = questionNum.answerFour;
     questionDiv.appendChild(questionBtnFour); //add button to ol (option 4)
-
-    // var questionBtnEl = document.querySelector('.question-list');
-    // questionBtnEl.addEventListener('click', newQuestion); //listens for click on the question buttons
 
     // listen for click on buttons
     var questionOneBtnEl = document.querySelector('.question-btn-one');
@@ -200,7 +183,9 @@ function stopGame() { //once the timer hits zero or all questions have been answ
 }
 
 var highScore = function() {
-    clearInterval(timeInt);
+    try {
+        clearInterval(timeInt);
+    } catch {}
     headerEl.remove();//removes top header
     mainHead.remove(); //removes initial main heading
     mainP.remove(); //removes initial main paragraph

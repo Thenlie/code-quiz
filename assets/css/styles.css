@@ -22,7 +22,7 @@ ol {
     margin-top: 50px;
     margin: 50px auto;
 }
-
+ /* button styles*/
 #startBtn, .submit-btn, .go-back, .clear-score {
     background-color: rgb(77, 0, 153);
     color: white;
@@ -31,7 +31,7 @@ ol {
     border: none;
     margin: 5px 10px;
 }
-
+ /* button hover styles */
 #startBtn:hover, .submit-btn:hover, .go-back:hover, .clear-score:hover, #question-btns:hover {
     background-color: rgb(191, 128, 255);
 }
