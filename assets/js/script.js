@@ -22,15 +22,12 @@ incorrectAns.className = 'user-answer'
 incorrectAns.textContent = 'WRONG!'
 
 //create question objects
-var questionOne = { question: 'Commonly used data types do NOT include:', answerOne: 'Strings', answerTwo: 'Booleans', answerThree: 'Alerts', answerFour: 'Numbers', solution: 'question-btn-three' };
-
-var questionTwo = { question: 'The condition in an if/else statement is enclosed with:', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-two' };
-
-var questionThree = { question: 'A useful tool used during debugging to print content to the debugger is:', answerOne: 'JavaScript', answerTwo: 'For Loops', answerThree: 'Terminal/Bash', answerFour: 'console.log', solution: 'question-btn-four' };
-
-var questionFour = { question: 'Arrays can be used to store:', answerOne: 'Numbers and Strings', answerTwo: 'Other Arrays', answerThree: 'Booleans', answerFour: 'All of the Above', solution: 'question-btn-four' };
-
-var questionFive = { question: 'String values must be enclosed within ___ when being assigned to variables.', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-one' };
+var questionList = [
+    {question: 'Commonly used data types do NOT include:', answerOne: 'Strings', answerTwo: 'Booleans', answerThree: 'Alerts', answerFour: 'Numbers', solution: 'question-btn-three'},
+    {question: 'The condition in an if/else statement is enclosed with:', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-two'},
+    {question: 'A useful tool used during debugging to print content to the debugger is:', answerOne: 'JavaScript', answerTwo: 'For Loops', answerThree: 'Terminal/Bash', answerFour: 'console.log', solution: 'question-btn-four'},
+    {question: 'Arrays can be used to store:', answerOne: 'Numbers and Strings', answerTwo: 'Other Arrays', answerThree: 'Booleans', answerFour: 'All of the Above', solution: 'question-btn-four'},
+    {question: 'String values must be enclosed within ___ when being assigned to variables.', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-one'}];
 
 //create question HTML elements
 var questionHead = document.createElement('h1'); //create h1 element
@@ -100,17 +97,17 @@ var startGame = function () {
 var createQuestion = function () { //generates a question from the list
     questionCount++;
     if (questionCount === 1) {
-        questionNum = questionOne;
+        questionNum = questionList[0];
     } else if (questionCount === 2) {
-        questionNum = questionTwo;
+        questionNum = questionList[1];
     } else if (questionCount === 3) {
-        questionNum = questionThree;
+        questionNum = questionList[2];
     } else if (questionCount === 4) {
-        questionNum = questionFour;
+        questionNum = questionList[3];
     } else if (questionCount === 5) {
-        questionNum = questionFive;
+        questionNum = questionList[4];
     }
-
+        
     questionHead.textContent = questionNum.question;
     pageContentEl.appendChild(questionHead);    //add h1 to page (question)
 
@@ -210,8 +207,6 @@ var highScore = function() {
         questionDiv.append(highScoreListItem); //add list items to ol
     }
     
-    // questionDiv.appendChild(goBackBtn);
-    // questionDiv.appendChild(clearScoreBtn);
     pageContentEl.appendChild(goBackBtn);
     pageContentEl.appendChild(clearScoreBtn);
     
