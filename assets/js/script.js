@@ -27,7 +27,8 @@ var questionList = [
     { question: 'The condition in an if/else statement is enclosed with:', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-two' },
     { question: 'A useful tool used during debugging to print content to the debugger is:', answerOne: 'JavaScript', answerTwo: 'For Loops', answerThree: 'Terminal/Bash', answerFour: 'console.log', solution: 'question-btn-four' },
     { question: 'Arrays can be used to store:', answerOne: 'Numbers and Strings', answerTwo: 'Other Arrays', answerThree: 'Booleans', answerFour: 'All of the Above', solution: 'question-btn-four' },
-    { question: 'String values must be enclosed within ___ when being assigned to variables.', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-one' }
+    { question: 'String values must be enclosed within ___ when being assigned to variables.', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-one' },
+    { question: 'Arrays are enclosed with:', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-four' }
 ];
 
 //create question HTML elements
@@ -130,11 +131,11 @@ var newQuestion = function(event) {
     incorrectAns.remove();
 
     var btnPressed = event.target; //define btnPressed as whichever button was clicked
-    if (btnPressed.className === questionList[questionCount].solution && questionCount < 4) { //check if the button is the same as the solution   
+    if (btnPressed.className === questionList[questionCount].solution && questionCount < questionList.length - 1) { //check if the button is the same as the solution   
         questionCount++;
         createQuestion();
         pageContentEl.appendChild(correctAns);
-    } else if (btnPressed.className != questionList[questionCount].solution && questionCount < 4) {
+    } else if (btnPressed.className != questionList[questionCount].solution && questionCount < questionList.length - 1) {
         timeLeft -= 10;
         questionCount++;
         createQuestion();
