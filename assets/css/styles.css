@@ -1,4 +1,5 @@
 /* utility styles */
+
 * {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
@@ -8,22 +9,32 @@ ol {
     padding: 0;
 }
 
+
 /* header styles */
+
 .header {
     display: flex;
     justify-content: space-between;
     margin: 20px;
 }
 
+
 /* main styles */
+
 .page-content {
     width: 80%;
     text-align: center;
     margin-top: 50px;
     margin: 50px auto;
 }
- /* button styles*/
-#startBtn, .submit-btn, .go-back, .clear-score {
+
+
+/* button styles*/
+
+#startBtn,
+.submit-btn,
+.go-back,
+.clear-score {
     background-color: rgb(77, 0, 153);
     color: white;
     padding: 10px 20px;
@@ -31,8 +42,15 @@ ol {
     border: none;
     margin: 5px 10px;
 }
- /* button hover styles */
-#startBtn:hover, .submit-btn:hover, .go-back:hover, .clear-score:hover, #question-btns:hover {
+
+
+/* button hover styles */
+
+#startBtn:hover,
+.submit-btn:hover,
+.go-back:hover,
+.clear-score:hover,
+#question-btns:hover {
     background-color: rgb(191, 128, 255);
 }
 
@@ -88,7 +106,8 @@ ol {
     padding: 5px;
 }
 
-.score-list, .score-list::marker {
+.score-list,
+.score-list::marker {
     text-align: left;
     background-color: lightgray;
     margin: 5px;
