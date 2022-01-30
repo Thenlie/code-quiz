@@ -6,31 +6,30 @@ var mainP = document.querySelector('#main-p'); //sets var for main paragraph ele
 var timerEl = document.querySelector('#timer'); //set var for timer element
 var pageContentEl = document.querySelector('.page-content');
 var highscoreBtnEl = document.querySelector('.view-high-score');
-
 var questionCount = 0; //counts how many questions have been asked
 var questionNum = {}; //empty object to pass questions through
 
+//timer variable
 var timeLeft = 0; //set timer to 75
 timerEl.textContent = 'Time: ' + timeLeft;
 
-//set var for whether or not user got answer right
+//var for whether or not user got answer right
 var correctAns = document.createElement('div');
 correctAns.className = 'user-answer'
-correctAns.textContent = 'CORRECT!'
+correctAns.textContent = 'Previous Question: CORRECT!'
 var incorrectAns = document.createElement('div');
 incorrectAns.className = 'user-answer'
-incorrectAns.textContent = 'WRONG!'
+incorrectAns.textContent = 'Previous Question: WRONG!'
 
 //create question objects
-var questionOne = { question: 'Commonly used data types do NOT include:', answerOne: 'Strings', answerTwo: 'Booleans', answerThree: 'Alerts', answerFour: 'Numbers', solution: 'question-btn-three' };
-
-var questionTwo = { question: 'The condition in an if/else statement is enclosed with:', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-two' };
-
-var questionThree = { question: 'A useful tool used during debugging to print content to the debugger is:', answerOne: 'JavaScript', answerTwo: 'For Loops', answerThree: 'Terminal/Bash', answerFour: 'console.log', solution: 'question-btn-four' };
-
-var questionFour = { question: 'Arrays can be used to store:', answerOne: 'Numbers and Strings', answerTwo: 'Other Arrays', answerThree: 'Booleans', answerFour: 'All of the Above', solution: 'question-btn-four' };
-
-var questionFive = { question: 'String values must be enclosed within ___ when being assigned to variables.', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-one' };
+var questionList = [
+    { question: 'Commonly used data types do NOT include:', answerOne: 'Strings', answerTwo: 'Booleans', answerThree: 'Alerts', answerFour: 'Numbers', solution: 'question-btn-three' },
+    { question: 'The condition in an if/else statement is enclosed with:', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-two' },
+    { question: 'A useful tool used during debugging to print content to the debugger is:', answerOne: 'JavaScript', answerTwo: 'For Loops', answerThree: 'Terminal/Bash', answerFour: 'console.log', solution: 'question-btn-four' },
+    { question: 'Arrays can be used to store:', answerOne: 'Numbers and Strings', answerTwo: 'Other Arrays', answerThree: 'Booleans', answerFour: 'All of the Above', solution: 'question-btn-four' },
+    { question: 'String values must be enclosed within ___ when being assigned to variables.', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-one' },
+    { question: 'Arrays are enclosed with:', answerOne: 'Quotes', answerTwo: 'Curly Brackets', answerThree: 'Parenthesis', answerFour: 'Square Brackets', solution: 'question-btn-four' }
+];
 
 //create question HTML elements
 var questionHead = document.createElement('h1'); //create h1 element
@@ -77,13 +76,13 @@ var clearScoreBtn = document.createElement('button'); //create clear highscore b
 clearScoreBtn.className = 'clear-score'
 clearScoreBtn.textContent = 'Clear Highscores'
 
-var startGame = function () {
+var startGame = function() {
     timeLeft = 75; //set timer to initial value
     mainHead.remove(); //removes initial main heading
     mainP.remove(); //removes initial main paragraph
     startBtnEl.remove(); //removes start button
 
-    timeInt = setInterval(function () { //declare global variable for timer
+    timeInt = setInterval(function() { //declare global variable for timer
         if (timeLeft > 0) {
             timerEl.textContent = 'Time: ' + timeLeft; //write timeLeft to the timer element
             timeLeft--; //decrement timer every interval
@@ -97,62 +96,51 @@ var startGame = function () {
     createQuestion();
 }
 
-var createQuestion = function () { //generates a question from the list
-    questionCount++;
-    if (questionCount === 1) {
-        questionNum = questionOne;
-    } else if (questionCount === 2) {
-        questionNum = questionTwo;
-    } else if (questionCount === 3) {
-        questionNum = questionThree;
-    } else if (questionCount === 4) {
-        questionNum = questionFour;
-    } else if (questionCount === 5) {
-        questionNum = questionFive;
-    }
-
-    questionHead.textContent = questionNum.question;
-    pageContentEl.appendChild(questionHead);    //add h1 to page (question)
+var createQuestion = function() { //generates a question from the list
+    questionHead.textContent = questionList[questionCount].question;
+    pageContentEl.appendChild(questionHead); //add h1 to page (question)
 
     questionDiv.textContent = '';
     pageContentEl.appendChild(questionDiv); //add ol to page (container)
 
-    questionBtnOne.textContent = questionNum.answerOne;
+    questionBtnOne.textContent = questionList[questionCount].answerOne;
     questionDiv.appendChild(questionBtnOne); //add button to ol (option 1)
 
-    questionBtnTwo.textContent = questionNum.answerTwo;
+    questionBtnTwo.textContent = questionList[questionCount].answerTwo;
     questionDiv.appendChild(questionBtnTwo); //add button to ol (option 2)
 
-    questionBtnThree.textContent = questionNum.answerThree;
+    questionBtnThree.textContent = questionList[questionCount].answerThree;
     questionDiv.appendChild(questionBtnThree); //add button to ol (option 3)
 
-    questionBtnFour.textContent = questionNum.answerFour;
+    questionBtnFour.textContent = questionList[questionCount].answerFour;
     questionDiv.appendChild(questionBtnFour); //add button to ol (option 4)
 
-    // listen for click on buttons
+    //add click listeners
     var questionOneBtnEl = document.querySelector('.question-btn-one');
-    questionOneBtnEl.addEventListener('click', newQuestion); 
+    questionOneBtnEl.addEventListener('click', newQuestion);
     var questionTwoBtnEl = document.querySelector('.question-btn-two');
-    questionTwoBtnEl.addEventListener('click', newQuestion); 
+    questionTwoBtnEl.addEventListener('click', newQuestion);
     var questionThreeBtnEl = document.querySelector('.question-btn-three');
-    questionThreeBtnEl.addEventListener('click', newQuestion); 
+    questionThreeBtnEl.addEventListener('click', newQuestion);
     var questionFourBtnEl = document.querySelector('.question-btn-four');
-    questionFourBtnEl.addEventListener('click', newQuestion); 
+    questionFourBtnEl.addEventListener('click', newQuestion);
 }
 
-var newQuestion = function (event) {
+var newQuestion = function(event) {
     correctAns.remove();
     incorrectAns.remove();
 
     var btnPressed = event.target; //define btnPressed as whichever button was clicked
-    if (btnPressed.className === questionNum.solution && questionCount < 5) { //check if the button is the same as the solution   
+    if (btnPressed.className === questionList[questionCount].solution && questionCount < questionList.length - 1) { //check if the button is the same as the solution   
+        questionCount++;
         createQuestion();
         pageContentEl.appendChild(correctAns);
-    } else if (btnPressed.className != questionNum.solution && questionCount < 5) {
+    } else if (btnPressed.className != questionList[questionCount].solution && questionCount < questionList.length - 1) {
         timeLeft -= 10;
+        questionCount++;
         createQuestion();
         pageContentEl.appendChild(incorrectAns);
-    } else if (btnPressed.className === questionNum.solution) { //check if it is the last question
+    } else if (btnPressed.className === questionList[questionCount].solution) { //check if it is the last question
         stopGame();
         pageContentEl.appendChild(correctAns);
         return;
@@ -186,7 +174,7 @@ var highScore = function() {
     try {
         clearInterval(timeInt);
     } catch {}
-    headerEl.remove();//removes top header
+    headerEl.remove(); //removes top header
     mainHead.remove(); //removes initial main heading
     mainP.remove(); //removes initial main paragraph
     startBtnEl.remove(); //removes start button
@@ -209,13 +197,11 @@ var highScore = function() {
         highScoreListItem.textContent = highScoreList[i]; //add content to list item
         questionDiv.append(highScoreListItem); //add list items to ol
     }
-    
-    // questionDiv.appendChild(goBackBtn);
-    // questionDiv.appendChild(clearScoreBtn);
+
     pageContentEl.appendChild(goBackBtn);
     pageContentEl.appendChild(clearScoreBtn);
-    
-    goBackBtn.addEventListener('click', goBack); 
+
+    goBackBtn.addEventListener('click', goBack);
     clearScoreBtn.addEventListener('click', clearScore);
 }
 
