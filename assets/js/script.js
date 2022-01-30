@@ -16,10 +16,10 @@ timerEl.textContent = 'Time: ' + timeLeft;
 //var for whether or not user got answer right
 var correctAns = document.createElement('div');
 correctAns.className = 'user-answer'
-correctAns.textContent = 'CORRECT!'
+correctAns.textContent = 'Previous Question: CORRECT!'
 var incorrectAns = document.createElement('div');
 incorrectAns.className = 'user-answer'
-incorrectAns.textContent = 'WRONG!'
+incorrectAns.textContent = 'Previous Question: WRONG!'
 
 //create question objects
 var questionList = [
