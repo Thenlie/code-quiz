@@ -4,7 +4,7 @@
 
 This is a web application that allows the user to play a multiple choice coding quiz. The quiz is timed and high scores are saved locally to the browser. This was made during the University of Utah coding bootcamp. 
 
-* Live webpage available [here.](https://thenlie.github.io/code-quiz/)
+## Live webpage available at [https://thenlie.github.io/code-quiz/](https://thenlie.github.io/code-quiz/)
 
 ## Screenshot of the Application
 
